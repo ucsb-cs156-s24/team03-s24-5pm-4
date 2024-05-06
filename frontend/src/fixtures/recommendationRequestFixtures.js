@@ -1,21 +1,18 @@
 const recommendationRequestFixtures = {
-    oneRecommendationRequest:
-        [
-            {
-                id: 1,
+    oneRecommendationRequest:{
+                "id": 1,
                 "requesterEmail": "djensen2@outlook.com",
                 "professorEmail": "pconrad@ucsb.edu",
                 "explanation": "grad school",
                 "dateRequested": "2024-04-05T08:00:00",
                 "dateNeeded": "2024-04-10T80:00:00",
                 "done": false
-            }
-        ],
+    },
 
     threeRecommendationRequests:
         [
             {
-                id: 2,
+                "id": 2,
                 "requesterEmail": "fakeemail@example.com",
                 "professorEmail": "zmatni@ucsb.edu",
                 "explanation": "masters program",
@@ -24,7 +21,7 @@ const recommendationRequestFixtures = {
                 "done": true
             },
             {
-                id: 3,
+                "id": 3,
                 "requesterEmail": "fakeemail@example.edu",
                 "professorEmail": "pconrad@ucsb.edu",
                 "explanation": "phd program",
