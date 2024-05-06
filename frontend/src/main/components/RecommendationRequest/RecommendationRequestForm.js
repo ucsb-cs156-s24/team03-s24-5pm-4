@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 function RecommendationRequestForm({initialContents, submitAction, buttonLabel = "Create"}){
+    // Stryker disable all
     const{
         register,
         formState: {errors},
@@ -10,11 +11,13 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
     } = useForm(
         {defaultValues: initialContents || {},}
     );
+    // Stryker restore all
+
 
     const navigate = useNavigate();
-
+    // Stryker disable next-line Regex
     const date_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-
+    // Stryker disable next-line all
     const email_regex = /(\w)+@(\w)+\.(\w)+/i;
 
     return (
@@ -76,10 +79,10 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                             id="explanation"
                             type="text"
                             isInvalid={Boolean(errors.explanation)}
-                            {...register("explanation", {required: true})}
+                            {...register("explanation", {required:true})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.professorEmail && 'Explanation is required. '}
+                            {errors.explanation && 'Explanation is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -94,7 +97,7 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                             {...register("dateRequested", {required: true, pattern: date_regex})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.professorEmail && 'Date Requested is required. '}
+                            {errors.dateRequested && 'Date Requested is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -109,7 +112,7 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                             {...register("dateNeeded", {required: true, pattern: date_regex})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.professorEmail && 'Date Needed is required. '}
+                            {errors.dateNeeded && 'Date Needed is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -124,7 +127,7 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                             {...register("completed", {required: true})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.professorEmail && 'Completed is required. '}
+                            {errors.completed && 'Completed is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>

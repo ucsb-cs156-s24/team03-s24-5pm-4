@@ -2,7 +2,7 @@ import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
 import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
-import UCSBDateForm from "../../../main/components/UCSBDates/UCSBDateForm";
+import {act} from "@testing-library/react-hooks";
 
 const mockedNavigate = jest.fn();
 
@@ -18,8 +18,8 @@ describe("RecommendationRequestForm tests", () => {
                 <RecommendationRequestForm />
             </Router>
         );
-        await screen.getByText(/Requester Email/);
-        await screen.getByText(/Create/);
+        await screen.findByText(/Requester Email/);
+        await screen.findByText(/Create/);
     });
 
     test("renders correctly when passing in a RecommendationRequest", async () => {
@@ -39,7 +39,7 @@ describe("RecommendationRequestForm tests", () => {
                 <RecommendationRequestForm />
             </Router>
         );
-        await screen.getByTestId("RecommendationRequestForm-requesterEmail");
+        await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
         const recommend = screen.getByTestId("RecommendationRequestForm-requesterEmail");
         const prof = screen.getByTestId("RecommendationRequestForm-professorEmail");
@@ -55,6 +55,9 @@ describe("RecommendationRequestForm tests", () => {
         fireEvent.click(submitButton);
 
         await screen.findByText(/Requester Email must be email-format./);
+        await screen.findByText(/Professor Email must be email-format./);
+        await screen.findByText(/Date Requested is required./);
+        await screen.findByText(/Date Needed is required./);
 
     });
 
@@ -67,14 +70,15 @@ describe("RecommendationRequestForm tests", () => {
         await screen.findByTestId("RecommendationRequestForm-submit");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-        fireEvent.click(submitButton);
+        fireEvent.click(submitButton)
 
-        await screen.findByText(/Requester Email is required./);
-        expect(screen.getByText(/Professor Email is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Date Requested is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Date Needed is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Completed is required./)).toBeInTheDocument();
+        await screen.findByText(/Completed is required./);
+        expect(screen.getByText(/Requester Email is required./)).toBeVisible()
+        expect(screen.getByText(/Professor Email is required./)).toBeVisible();
+        expect(screen.getByText(/Explanation is required./)).toBeVisible();
+        expect(screen.getByText(/Date Requested is required./)).toBeVisible();
+        expect(screen.getByText(/Date Needed is required./)).toBeVisible();
+        expect(screen.getByText(/Completed is required./)).toBeVisible();
     });
 
     test("No Errors on good input", async () => {
@@ -86,7 +90,7 @@ describe("RecommendationRequestForm tests", () => {
             </Router>
         );
 
-        await screen.getByTestId("RecommendationRequestForm-requesterEmail");
+        await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
         const recommend = screen.getByTestId("RecommendationRequestForm-requesterEmail");
         const prof = screen.getByTestId("RecommendationRequestForm-professorEmail");
@@ -98,14 +102,16 @@ describe("RecommendationRequestForm tests", () => {
 
         fireEvent.change(recommend, {target: {value: 'djensen2@outlook.com'}});
         fireEvent.change(prof, {target: {value: 'pconrad@ucsb.edu'}});
-        fireEvent.change(prof, {target: {value: 'masters program'}});
+        fireEvent.change(explanation, {target: {value: 'masters program'}});
         fireEvent.change(dateRequested, {target: {value: '2024-05-08T08:00:00'}});
         fireEvent.change(dateNeeded, {target: {value: '2024-05-08T10:00:00'}});
-        fireEvent.change(dateNeeded, {target: {value: true}});
+        fireEvent.change(completed, {target: {value: true}});
         fireEvent.click(submitButton);
 
-        expect(screen.queryByText(/must be email-format/)).not.toBeInTheDocument();
-        expect(screen.queryByText(/must be in ISO format/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Professor Email must be email-format./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Requester Email must be email-format./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Date Requested is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Date Needed is required./)).not.toBeInTheDocument();
     });
 
 
