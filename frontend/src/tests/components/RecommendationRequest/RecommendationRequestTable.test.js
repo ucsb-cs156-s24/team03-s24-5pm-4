@@ -111,7 +111,29 @@ describe("UserTable tests", () => {
         fireEvent.click(editButton);
 
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/recommendationrequest/edit/2'));
+    });
 
+    test("Delete button calls delete callback", async () => {
+        // arrange
+        const currentUser = currentUserFixtures.adminUser;
+        const testId = "RecommendationRequestTable"
+        // act - render the component
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <RecommendationRequestTable requests={recommendationRequestFixtures.threeRecommendationRequests} currentUser={currentUser} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
 
-    })
+        // assert - check that the expected content is rendered
+        expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("fakeemail@example.com");
+
+        const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+        expect(deleteButton).toBeInTheDocument();
+
+        // act - click the delete button
+        fireEvent.click(deleteButton);
+    });
 });

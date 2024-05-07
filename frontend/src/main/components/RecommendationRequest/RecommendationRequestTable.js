@@ -23,7 +23,6 @@ export default function RecommendationRequestTable({requests, currentUser}){
     //Stryker restore all
 
     // Stryker disable next-line all
-
     const deleteCallback = async (cell) => {deleteMutation.mutate(cell);}
 
     const columns = [
