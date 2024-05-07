@@ -118,16 +118,16 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="completed">Completed</Form.Label>
+                        <Form.Label htmlFor="done">Done</Form.Label>
                         <Form.Control
-                            data-testid="RecommendationRequestForm-completed"
-                            id="completed"
-                            type="boolean"
-                            isInvalid={Boolean(errors.completed)}
-                            {...register("completed", {required: true})}
+                            data-testid="RecommendationRequestForm-done"
+                            id="done"
+                            type="text"
+                            isInvalid={Boolean(errors.done)}
+                            {...register("done", {required: true})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.completed && 'Completed is required. '}
+                            {errors.done && 'Done is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
