@@ -2,6 +2,7 @@ import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
 import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 const mockedNavigate = jest.fn();
 
@@ -11,11 +12,16 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe("RecommendationRequestForm tests", () => {
+
+    const queryClient = new QueryClient();
+
     test("renders correctly", async () => {
         render(
-            <Router>
-                <RecommendationRequestForm />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecommendationRequestForm />
+                </Router>
+            </QueryClientProvider>
         );
         await screen.findByText(/Requester Email/);
         await screen.findByText(/Create/);
@@ -23,9 +29,11 @@ describe("RecommendationRequestForm tests", () => {
 
     test("renders correctly when passing in a RecommendationRequest", async () => {
         render(
-            <Router>
-                <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
+                </Router>
+            </QueryClientProvider>
         );
         await screen.findByTestId(/RecommendationRequestForm-id/);
         expect(screen.getByText(/Id/)).toBeInTheDocument();
@@ -34,9 +42,11 @@ describe("RecommendationRequestForm tests", () => {
 
     test("Correct error messages on bad input", async () => {
         render(
-            <Router >
-                <RecommendationRequestForm />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router >
+                    <RecommendationRequestForm />
+                </Router>
+            </QueryClientProvider>
         );
         await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
@@ -62,9 +72,11 @@ describe("RecommendationRequestForm tests", () => {
 
     test("error messages on missing input", async () => {
         render(
-            <Router>
-                <RecommendationRequestForm />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecommendationRequestForm />
+                </Router>
+            </QueryClientProvider>
         );
         await screen.findByTestId("RecommendationRequestForm-submit");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
@@ -84,9 +96,11 @@ describe("RecommendationRequestForm tests", () => {
         const mockSubmitAction = jest.fn();
 
         render(
-            <Router >
-                <RecommendationRequestForm submitAction={mockSubmitAction} />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router >
+                    <RecommendationRequestForm submitAction={mockSubmitAction} />
+                </Router>
+            </QueryClientProvider>
         );
 
         await screen.findByTestId("RecommendationRequestForm-requesterEmail");
@@ -117,9 +131,11 @@ describe("RecommendationRequestForm tests", () => {
     test("that navigate(-1) is called when Cancel is clicked", async () => {
 
         render(
-            <Router  >
-                <RecommendationRequestForm />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router  >
+                    <RecommendationRequestForm />
+                </Router>
+            </QueryClientProvider>
         );
         await screen.findByTestId("RecommendationRequestForm-cancel");
         const cancelButton = screen.getByTestId("RecommendationRequestForm-cancel");
