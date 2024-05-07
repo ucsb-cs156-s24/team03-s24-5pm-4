@@ -6,7 +6,7 @@ const recommendationRequestFixtures = {
                 "explanation": "grad school",
                 "dateRequested": "2024-04-05T08:00:00",
                 "dateNeeded": "2024-04-10T80:00:00",
-                "done": false
+                "done": "false"
     },
 
     threeRecommendationRequests:
@@ -18,7 +18,7 @@ const recommendationRequestFixtures = {
                 "explanation": "masters program",
                 "dateRequested": "2024-03-08T08:00:00",
                 "dateNeeded": "2024-04-20T80:00:00",
-                "done": true
+                "done": "true"
             },
             {
                 "id": 3,
@@ -27,7 +27,7 @@ const recommendationRequestFixtures = {
                 "explanation": "phd program",
                 "dateRequested": "2024-02-21T08:00:00",
                 "dateNeeded": "2024-05-02T80:00:00",
-                "done": false
+                "done": "false"
             },
             {
                 id: 4,
@@ -36,7 +36,7 @@ const recommendationRequestFixtures = {
                 "explanation": "postdoc letter",
                 "dateRequested": "2024-01-01T08:00:00",
                 "dateNeeded": "2024-06-12T80:00:00",
-                "done": false
+                "done": "false"
             },
         ]
 }
