@@ -93,11 +93,10 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
                             id="reviewerEmail"
                             type="text"
                             isInvalid={Boolean(errors.reviewerEmail)}
-                            {...register("reviewerEmail", { required: true, pattern: email_regex })}
+                            {...register("reviewerEmail", { required: "reviewerEmail is required" })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.reviewerEmail && 'reviewerEmail is required'}
-                            {errors.reviewerEmail?.type === 'pattern' && 'reviewerEmail must be in the format x@y.z'}
+                            {errors.reviewerEmail?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>

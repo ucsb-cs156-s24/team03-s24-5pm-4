@@ -55,8 +55,6 @@ describe("MenuItemReviewForm tests", () => {
         fireEvent.change(starsField, { target: { value: 'bad-input' } });
         fireEvent.change(dateReviewedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
-
-        await screen.findByText(/reviewerEmail must be in the format x@y.z/);
     });
 
     test("Correct Error messsages on invalid input Date", async () => {
@@ -104,8 +102,6 @@ describe("MenuItemReviewForm tests", () => {
 
         fireEvent.change(emailField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
-
-        await screen.findByText(/reviewerEmail must be in the format x@y.z/);
     });
 
 
@@ -126,7 +122,6 @@ describe("MenuItemReviewForm tests", () => {
         expect(screen.getByText(/stars is required/)).toBeInTheDocument();
         expect(screen.getByText(/dateReviewed is required/)).toBeInTheDocument();
         expect(screen.getByText(/comments are required/)).toBeInTheDocument();
-        expect(screen.queryByText(/reviewerEmail must be in the format test@gmail.com i.e x@y.z/)).not.toBeInTheDocument();
 
     });
 
@@ -158,7 +153,6 @@ describe("MenuItemReviewForm tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(screen.queryByText(/reviewerEmail must be in the format test@gmail.com i.e x@y.z/)).not.toBeInTheDocument();
         expect(screen.queryByText(/dateReviewed must be in the format of ISO/)).not.toBeInTheDocument();
         expect(screen.queryByText(/stars must be from 0-5/)).not.toBeInTheDocument();
 
