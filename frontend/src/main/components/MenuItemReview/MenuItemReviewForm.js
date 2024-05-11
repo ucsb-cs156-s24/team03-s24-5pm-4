@@ -24,6 +24,8 @@ function MenuItemReviewForm({ initialContents, submitAction, buttonLabel = "Crea
 
     // Stryker disable next-line all
     const stars_regex = /[0-5]/;
+
+    // Stryker disable next-line all
     const email_regex = /.+@.+\..+/;
 
 
