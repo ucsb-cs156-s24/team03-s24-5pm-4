@@ -126,6 +126,7 @@ describe("MenuItemReviewForm tests", () => {
         expect(screen.getByText(/stars is required/)).toBeInTheDocument();
         expect(screen.getByText(/dateReviewed is required/)).toBeInTheDocument();
         expect(screen.getByText(/comments are required/)).toBeInTheDocument();
+        expect(screen.queryByText(/reviewerEmail must be in the format test@gmail.com i.e x@y.z/)).not.toBeInTheDocument();
 
     });
 
