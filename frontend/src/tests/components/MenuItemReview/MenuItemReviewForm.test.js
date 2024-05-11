@@ -140,7 +140,7 @@ describe("MenuItemReviewForm tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(screen.queryByText(/reviewerEmail must be in the format test@gmail.com i.e *@*.*/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/reviewerEmail must be in the format test@gmail.com i.e x@y.z/)).not.toBeInTheDocument();
         expect(screen.queryByText(/dateReviewed must be in the format of ISO/)).not.toBeInTheDocument();
         expect(screen.queryByText(/stars must be from 0-5/)).not.toBeInTheDocument();
 
