@@ -2,6 +2,7 @@ import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import HelpRequestForm from "main/components/HelpRequest/HelpRequestForm";
 import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const mockedNavigate = jest.fn();
 
@@ -12,7 +13,8 @@ jest.mock('react-router-dom', () => ({
 
 
 describe("HelpRequest tests", () => {
-
+    const queryClient = new QueryClient();
+    const testId = "HelpRequestForm";
     test("renders correctly", async () => {
 
         render(
@@ -30,7 +32,7 @@ describe("HelpRequest tests", () => {
 
         render(
             <Router  >
-                <HelpRequestForm initialContents={helpRequestFixtures.oneRequest} />
+                <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
             </Router>
         );
         await screen.findByTestId("HelpRequestForm-id");
@@ -143,6 +145,65 @@ describe("HelpRequest tests", () => {
 
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
 
+    });
+
+
+    test("kill solved true mutant", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <HelpRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+
+        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        const submitButton = screen.getByText(/Create/);
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Requester email is required./);
+        expect(screen.getByText(/Team Id is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Table or Breakout Room is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Solved is required./)).toBeInTheDocument();
+
+        const solvedInput = screen.getByTestId(`${testId}-solved`);
+        fireEvent.change(solvedInput, { target: { value: "ftrue" } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(screen.getByText(/Note: Solved must be true or false/)).toBeInTheDocument();
+        });
+    });
+
+    test("kill solved false mutant", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <HelpRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+
+        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        const submitButton = screen.getByText(/Create/);
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/Requester email is required./);
+        expect(screen.getByText(/Team Id is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Table or Breakout Room is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Request Time is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Solved is required./)).toBeInTheDocument();
+
+        const solvedInput = screen.getByTestId(`${testId}-solved`);
+        fireEvent.change(solvedInput, { target: { value: "truef" } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(screen.getByText(/Note: Solved must be true or false/)).toBeInTheDocument();
+        });
     });
 
 });
