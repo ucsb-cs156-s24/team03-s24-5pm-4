@@ -91,6 +91,23 @@ describe("MenuItemReviewForm tests", () => {
         await screen.findByText(/stars must be from 0-5/);
     });
 
+    test("Correct Error messsages on invalid input email", async () => {
+
+        render(
+            <Router  >
+                <MenuItemReviewForm />
+            </Router>
+        );
+        await screen.findByTestId("MenuItemReviewForm-itemId");
+        const emailField = screen.getByTestId("MenuItemReviewForm-reviewerEmail");
+        const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
+
+        fireEvent.change(emailField, { target: { value: 'bad-input' } });
+        fireEvent.click(submitButton);
+
+        await screen.findByText(/reviewerEmail must be in the format x@y.z/);
+    });
+
 
     test("Correct Error messsages on missing input", async () => {
 
