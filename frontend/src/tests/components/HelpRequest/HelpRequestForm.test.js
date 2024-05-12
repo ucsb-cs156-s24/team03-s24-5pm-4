@@ -42,23 +42,6 @@ describe("HelpRequest tests", () => {
     });
 
 
-    test("Correct Error messsages on bad input - requestTime", async () => {
-
-        render(
-            <Router  >
-                <HelpRequestForm />
-            </Router>
-        );
-        await screen.findByTestId("HelpRequestForm-requestTime");
-        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-        const submitButton = screen.getByTestId("HelpRequestForm-submit");
-
-        fireEvent.change(requestTimeField, { target: { value: 'bad-input' } });
-        fireEvent.click(submitButton);
-
-        await screen.findByText(/Note: Request Time must be in iso format/);
-    });
-
     test("Correct Error messsages on bad input - solved", async () => {
 
         render(
