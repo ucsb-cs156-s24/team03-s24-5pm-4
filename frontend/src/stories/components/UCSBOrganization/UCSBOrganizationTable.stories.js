@@ -1,42 +1,42 @@
 import React from 'react';
-import RecommendationRequestTable from "main/components/RecommendationRequest/RecommendationRequestTable";
-import { recommendationRequestFixtures } from 'fixtures/recommendationRequestFixtures';
+import UCSBOrganizationTable from 'main/components/UCSBOrganization/UCSBOrganizationTable';
+import { ucsbOrganizationFixtures } from 'fixtures/ucsbOrganizationFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/RecommendationRequest/RecommendationRequestTable',
-    component: RecommendationRequestTable
+    title: 'components/UCSBOrganization/UCSBOrganizationTable',
+    component: UCSBOrganizationTable
 };
 
 const Template = (args) => {
-    return(
-        <RecommendationRequestTable {...args} />
+    return (
+        <UCSBOrganizationTable {...args} />
     )
 };
 
 export const Empty = Template.bind({});
 
 Empty.args = {
-    requests: []
+    ucsborganizations: []
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    requests: recommendationRequestFixtures.threeRecommendationRequests,
+    ucsborganizations: ucsbOrganizationFixtures.threeOrganizations,
     currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    requests: recommendationRequestFixtures.threeRecommendationRequests,
+    ucsborganizations: ucsbOrganizationFixtures.threeOrganizations,
     currentUser: currentUserFixtures.adminUser,
 }
 
 ThreeItemsAdminUser.parameters = {
     msw: [
-        rest.delete('/api/recommendationrequest', (req, res, ctx) => {
+        rest.delete('/api/ucsborganizations', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
