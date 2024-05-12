@@ -7,15 +7,15 @@ export default {
     component: UCSBDiningCommonsMenuItemsForm
 };
 
-const Template = (menuItems) => {
+const Template = (args) => {
     return (
-        <UCSBDiningCommonsMenuItemsForm {...menuItems} />
+        <UCSBDiningCommonsMenuItemsForm {...args} />
     )
 };
 
 export const Create = Template.bind({});
 
-Create.menuItems = {
+Create.args = {
     buttonLabel: "Create",
     submitAction: (data) => {
          console.log("Submit was clicked with data: ", data); 
@@ -27,8 +27,8 @@ Create.menuItems = {
 export const Update = Template.bind({});
 
 
-Update.menuItems = {
-    initialContents: ucsbDiningCommonsMenuItemsFixtures.oneDiningCommonsMenuItems,
+Update.args = {
+    initialContents: ucsbDiningCommonsMenuItemsFixtures.oneItem,
     buttonLabel: "Update",
     submitAction: (data) => {
         console.log("Submit was clicked with data: ", data); 
