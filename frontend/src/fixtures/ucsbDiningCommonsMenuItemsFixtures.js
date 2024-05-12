@@ -1,25 +1,25 @@
 const ucsbDiningCommonsMenuItemsFixtures = {
-    oneDate: {
+    oneDiningCommonsMenuItems: {
         "id": 1,
         "diningCommonsCode": "Portola",
         "name": "Sushi",
         "station": "Asian"
     },
-    threeDates: [
+    threeDiningCommonsMenuItems: [
         {
-            "id": 1,
+            "id": 2,
             "diningCommonsCode": "De La Guerra",
             "name": "Beef Stroganoff",
             "station": "Blue Plate Special"
         },
         {
-            "id": 2,
+            "id": 3,
             "diningCommonsCode": "Carillo",
             "name": "Pizza",
             "station": "Italian"
         },
         {
-            "id": 3,
+            "id": 4,
             "diningCommonsCode": "Portola",
             "name": "Sushi",
             "station": "Asian"
