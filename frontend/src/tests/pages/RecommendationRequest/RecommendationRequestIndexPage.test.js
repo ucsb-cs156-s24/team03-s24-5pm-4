@@ -90,8 +90,8 @@ describe("RecommendationRequestIndexPage tests", () => {
         expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-dateRequested`)).toHaveTextContent("2024-03-08T08:00:00");
         expect(screen.getByTestId(`RecommendationRequestTable-cell-row-1-col-dateRequested`)).toHaveTextContent("2024-02-21T08:00:00");
 
-        expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-dateNeeded`)).toHaveTextContent("2024-04-20T80:00:00");
-        expect(screen.getByTestId(`RecommendationRequestTable-cell-row-1-col-dateNeeded`)).toHaveTextContent("2024-05-02T80:00:00");
+        expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-dateNeeded`)).toHaveTextContent("2024-04-20T08:00:00");
+        expect(screen.getByTestId(`RecommendationRequestTable-cell-row-1-col-dateNeeded`)).toHaveTextContent("2024-05-02T08:00:00");
 
         expect(screen.getByTestId(`RecommendationRequestTable-cell-row-0-col-done`)).toHaveTextContent("true");
         expect(screen.getByTestId(`RecommendationRequestTable-cell-row-1-col-done`)).toHaveTextContent("false");

@@ -11,7 +11,6 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-
 import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
 import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
@@ -111,21 +110,20 @@ function App() {
             </>
           )
         }
-        
         {
-              hasRole(currentUser, "ROLE_USER") && (
-                <>
-                  <Route exact path="/menuitemreview" element={<MenuItemReviewIndexPage />} />
-                </>
-              )
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/menuitemreview" element={<MenuItemReviewIndexPage />} />
+            </>
+          )
         }
         {
-              hasRole(currentUser, "ROLE_ADMIN") && (
-                <>
-                  <Route exact path="/menuitemreview/edit/:id" element={<MenuItemReviewEditPage />} />
-                  <Route exact path="/menuitemreview/create" element={<MenuItemReviewCreatePage />} />
-                </>
-              )
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/menuitemreview/edit/:id" element={<MenuItemReviewEditPage />} />
+              <Route exact path="/menuitemreview/create" element={<MenuItemReviewCreatePage />} />
+            </>
+          )
         }
         {
           hasRole(currentUser, "ROLE_USER") && (
@@ -146,11 +144,8 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
-              <>
-                  <Route exact path="/recommendationrequest" element={<RecommendationRequestIndexPage />} />
-              </>
-            <>
               <Route exact path="/ucsbdiningcommonsmenuitems" element={<UCSBDiningCommonsMenuItemsIndexPage />} />
+              <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
             </>
           )
         }
@@ -161,6 +156,8 @@ function App() {
               <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
               <Route exact path="/ucsbdiningcommonsmenuitems/edit/:id" element={<UCSBDiningCommonsMenuItemsEditPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitems/create" element={<UCSBDiningCommonsMenuItemsCreatePage />} />
+              <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
+              <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
             </>
           )
         }

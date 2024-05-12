@@ -64,7 +64,6 @@ describe("HelpRequestCreatePage tests", () => {
         };
 
         axiosMock.onPost("/api/helprequest/post").reply( 202, helpRequest );
-
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -72,7 +71,6 @@ describe("HelpRequestCreatePage tests", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
-
         await waitFor(() => {
             expect(screen.getByTestId("HelpRequestForm-requesterEmail")).toBeInTheDocument();
         });
@@ -111,8 +109,4 @@ describe("HelpRequestCreatePage tests", () => {
         expect(mockToast).toBeCalledWith("New helpRequest Created - id: 17 requesterEmail: jason_rodrigues@ucsb.edu");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
     });
-
-
 });
-
-
