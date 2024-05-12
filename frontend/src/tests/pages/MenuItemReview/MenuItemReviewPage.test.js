@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderIndexPage from "main/pages/Placeholder/MenuItemReviewIndexPage";
+import PlaceholderIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
