@@ -1,42 +1,42 @@
 import React from 'react';
-import UCSBDiningCommonsMenuItemsTable from 'main/components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsTable';
-import { ucsbDiningCommonsMenuItemsFixtures } from 'fixtures/ucsbDiningCommonsMenuItemsFixtures';
+import UCSBOrganizationTable from 'main/components/UCSBOrganization/UCSBOrganizationTable';
+import { ucsbOrganizationFixtures } from 'fixtures/ucsbOrganizationFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
 
 export default {
-    title: 'components/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsTable',
-    component: UCSBDiningCommonsMenuItemsTable
+    title: 'components/UCSBOrganization/UCSBOrganizationTable',
+    component: UCSBOrganizationTable
 };
 
 const Template = (args) => {
     return (
-        <UCSBDiningCommonsMenuItemsTable {...args} />
+        <UCSBOrganizationTable {...args} />
     )
 };
 
 export const Empty = Template.bind({});
 
 Empty.args = {
-    menuItems: []
+    ucsborganizations: []
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    menuItems: ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems,
+    ucsborganizations: ucsbOrganizationFixtures.threeOrganizations,
     currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-    menuItems: ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems,
+    ucsborganizations: ucsbOrganizationFixtures.threeOrganizations,
     currentUser: currentUserFixtures.adminUser,
 }
 
 ThreeItemsAdminUser.parameters = {
     msw: [
-        rest.delete('/api/ucsbdiningcommonsmenuitems', (req, res, ctx) => {
+        rest.delete('/api/ucsborganizations', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
