@@ -109,4 +109,5 @@ describe("HelpRequestCreatePage tests", () => {
         expect(mockToast).toBeCalledWith("New helpRequest Created - id: 17 requesterEmail: jason_rodrigues@ucsb.edu");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
     });
+
 });
