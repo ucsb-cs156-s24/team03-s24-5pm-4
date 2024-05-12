@@ -8,7 +8,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-describe("PlaceholderCreatePage tests", () => {
+describe("HelpRequestCreatePage tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
 
@@ -29,7 +29,7 @@ describe("PlaceholderCreatePage tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
-                    <PlaceholderCreatePage />
+                    <HelpRequestCreatePage />
                 </MemoryRouter>
             </QueryClientProvider>
         );
