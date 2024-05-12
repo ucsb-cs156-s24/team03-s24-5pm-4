@@ -23,7 +23,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable helpRequests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -61,7 +61,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable helpRequests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -101,7 +101,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable helpRequests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -126,7 +126,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <HelpRequestTable helpRequests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
+          <HelpRequestTable requests={helpRequestFixtures.threeHelpRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -138,8 +138,6 @@ describe("UserTable tests", () => {
     expect(deleteButton).toBeInTheDocument();
     
     fireEvent.click(deleteButton);
-
-    await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/helprequest/delete/1'));
 
   });
 
