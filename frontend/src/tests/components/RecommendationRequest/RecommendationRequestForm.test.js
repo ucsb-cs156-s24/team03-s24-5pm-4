@@ -54,6 +54,7 @@ describe("RecommendationRequestForm tests", () => {
         const prof = screen.getByTestId("RecommendationRequestForm-professorEmail");
         const dateRequested = screen.getByTestId("RecommendationRequestForm-dateRequested");
         const dateNeeded = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+        const done = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
 
@@ -61,12 +62,14 @@ describe("RecommendationRequestForm tests", () => {
         fireEvent.change(prof, {target: {value: 'bad-input'}});
         fireEvent.change(dateRequested, {target: {value: 'bad-input'}});
         fireEvent.change(dateNeeded, {target: {value: 'bad-input'}});
+        fireEvent.change(done, {target: {value: 'bad-input'}});
         fireEvent.click(submitButton);
 
         await screen.findByText(/Requester Email must be email-format./);
         await screen.findByText(/Professor Email must be email-format./);
         await screen.findByText(/Date Requested is required./);
         await screen.findByText(/Date Needed is required./);
+        await screen.findByText(/Done must be true or false./);
 
     });
 
@@ -83,13 +86,13 @@ describe("RecommendationRequestForm tests", () => {
 
         fireEvent.click(submitButton)
 
-        await screen.findByText(/Completed is required./);
+        await screen.findByText(/Done is required./);
         expect(screen.getByText(/Requester Email is required./)).toBeVisible()
         expect(screen.getByText(/Professor Email is required./)).toBeVisible();
         expect(screen.getByText(/Explanation is required./)).toBeVisible();
         expect(screen.getByText(/Date Requested is required./)).toBeVisible();
         expect(screen.getByText(/Date Needed is required./)).toBeVisible();
-        expect(screen.getByText(/Completed is required./)).toBeVisible();
+        expect(screen.getByText(/Done is required./)).toBeVisible();
     });
 
     test("No Errors on good input", async () => {
@@ -110,7 +113,7 @@ describe("RecommendationRequestForm tests", () => {
         const explanation = screen.getByTestId("RecommendationRequestForm-explanation");
         const dateRequested = screen.getByTestId("RecommendationRequestForm-dateRequested");
         const dateNeeded = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-        const completed = screen.getByTestId("RecommendationRequestForm-completed");
+        const done = screen.getByTestId("RecommendationRequestForm-done");
         const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
         fireEvent.change(recommend, {target: {value: 'djensen2@outlook.com'}});
@@ -118,13 +121,14 @@ describe("RecommendationRequestForm tests", () => {
         fireEvent.change(explanation, {target: {value: 'masters program'}});
         fireEvent.change(dateRequested, {target: {value: '2024-05-08T08:00:00'}});
         fireEvent.change(dateNeeded, {target: {value: '2024-05-08T10:00:00'}});
-        fireEvent.change(completed, {target: {value: true}});
+        fireEvent.change(done, {target: {value: "true"}});
         fireEvent.click(submitButton);
 
         expect(screen.queryByText(/Professor Email must be email-format./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Requester Email must be email-format./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Date Requested is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Date Needed is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Done must be true or false./)).not.toBeInTheDocument();
     });
 
 

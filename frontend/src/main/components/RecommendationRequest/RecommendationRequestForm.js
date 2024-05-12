@@ -20,6 +20,9 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
     // Stryker disable next-line all
     const email_regex = /(\w)+@(\w)+\.(\w)+/i;
 
+    // Stryker disable next-line all
+    const truefalse_regex = /(true)|(false)/i;
+
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
             <Row>
@@ -118,16 +121,17 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="completed">Completed</Form.Label>
+                        <Form.Label htmlFor="done">Done</Form.Label>
                         <Form.Control
-                            data-testid="RecommendationRequestForm-completed"
-                            id="completed"
-                            type="boolean"
-                            isInvalid={Boolean(errors.completed)}
-                            {...register("completed", {required: true})}
+                            data-testid="RecommendationRequestForm-done"
+                            id="done"
+                            type="text"
+                            isInvalid={Boolean(errors.done)}
+                            {...register("done", {required: true, pattern: truefalse_regex})}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.completed && 'Completed is required. '}
+                            {errors.done && 'Done is required. '}
+                            {errors.done?.type === 'pattern' && 'Done must be true or false.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
