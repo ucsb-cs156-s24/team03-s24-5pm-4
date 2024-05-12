@@ -127,6 +127,10 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                             id="done"
                             type="text"
                             isInvalid={Boolean(errors.done)}
+                            {...register("done", {required: true})}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.done && 'Done is required. '}
                             {...register("done", {required: true, pattern: truefalse_regex})}
                         />
                         <Form.Control.Feedback type="invalid">
