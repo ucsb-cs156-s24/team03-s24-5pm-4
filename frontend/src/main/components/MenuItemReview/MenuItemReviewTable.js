@@ -55,8 +55,8 @@ export default function MenuItemReviewsTable({ reviews, currentUser }) {
     ];
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "MenuItemReviewsTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MenuItemReviewsTable"));
+        columns.push(ButtonColumn("Edit", "primary", editCallback, "MenuItemReviewTable"));
+        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MenuItemReviewTable"));
     } 
 
     return <OurTable
