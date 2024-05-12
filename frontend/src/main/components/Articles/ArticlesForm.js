@@ -60,13 +60,13 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.title?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="dateAdded">Date (iso format)</Form.Label>
+                        <Form.Label htmlFor="dateAdded"> Date(iso format)</Form.Label>
                         <Form.Control
                             data-testid="ArticlesForm-dateAdded"
                             id="dateAdded"
@@ -75,7 +75,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             {...register("dateAdded", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dateAdded && 'dateAdded is required. '}
+                            {errors.dateAdded && 'dateAdded is required.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -99,7 +99,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.email?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
@@ -116,7 +116,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.url?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                     </Col>
@@ -135,7 +135,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.name?.message}
+                            {errors.explanation?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
