@@ -27,6 +27,10 @@ import UCSBDiningCommonsMenuItemsIndexPage from "main/pages/UCSBDiningCommonsMen
 import UCSBDiningCommonsMenuItemsCreatePage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsCreatePage";
 import UCSBDiningCommonsMenuItemsEditPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsEditPage";
 
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequest/HelpRequestEditPage";
+
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -140,6 +144,7 @@ function App() {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsbdiningcommonsmenuitems" element={<UCSBDiningCommonsMenuItemsIndexPage />} />
+              <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
             </>
           )
         }
@@ -148,6 +153,8 @@ function App() {
             <>
               <Route exact path="/ucsbdiningcommonsmenuitems/edit/:id" element={<UCSBDiningCommonsMenuItemsEditPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitems/create" element={<UCSBDiningCommonsMenuItemsCreatePage />} />
+              <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
+              <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
             </>
           )
         }
