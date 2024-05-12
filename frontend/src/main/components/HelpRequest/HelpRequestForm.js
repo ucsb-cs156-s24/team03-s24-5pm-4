@@ -113,7 +113,6 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.requestTime && 'Request Time is required.'}
-                            {errors.requestTime?.type === 'pattern' && 'Note: Request Time must be in iso format'}
                         </Form.Control.Feedback>
                 </Form.Group>
                 </Col>

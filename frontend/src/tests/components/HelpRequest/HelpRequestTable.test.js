@@ -16,6 +16,36 @@ jest.mock('react-router-dom', () => ({
 describe("UserTable tests", () => {
   const queryClient = new QueryClient();
 
+  test("renders empty table correctly", () => {
+    
+    // arrange
+    const currentUser = currentUserFixtures.adminUser;
+
+    // act
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestTable requests={[]} currentUser={currentUser} />
+        </MemoryRouter>
+      </QueryClientProvider>
+    );
+
+    const expectedHeaders = ["id", "Requester Email", "Team Id", "Table or Breakout Room", "Request Time", "Explanation", "Solved"];
+    const expectedFields = ["id", "requesterEmail", "teamId", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
+    const testId = "HelpRequestTable";
+
+    // assert
+    expectedHeaders.forEach((headerText) => {
+      const header = screen.getByText(headerText);
+      expect(header).toBeInTheDocument();
+    });
+
+    expectedFields.forEach((field) => {
+      const fieldElement = screen.queryByTestId(`${testId}-cell-row-0-col-${field}`);
+      expect(fieldElement).not.toBeInTheDocument();
+    });
+  });
+
   test("Has the expected column headers and content for ordinary user", () => {
 
     const currentUser = currentUserFixtures.userOnly;
@@ -133,8 +163,14 @@ describe("UserTable tests", () => {
     );
 
     await waitFor(() => { expect(screen.getByTestId(`HelpRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("example1@ucsb.edu");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-teamId`)).toHaveTextContent("5pm-41");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-tableOrBreakoutRoom`)).toHaveTextContent("1");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-requestTime`)).toHaveTextContent("2022-01-02T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Issues");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-solved`)).toHaveTextContent("true");
 
-    const deleteButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Edit-button`);
+    const deleteButton = screen.getByTestId(`HelpRequestTable-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
     
     fireEvent.click(deleteButton);
