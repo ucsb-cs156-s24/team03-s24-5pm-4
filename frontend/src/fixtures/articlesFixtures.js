@@ -36,7 +36,7 @@ const articlesFixtures = {
         "explanation": "Scary movies not to watch with family",
         "dateAdded" : "2022-07-04T12:20:00",      
         "url" : "https://movietrends.com/",
-        "email" : "movietrens@gmail.com",     
+        "email" : "movietrends@gmail.com",     
         },
         
     ]
