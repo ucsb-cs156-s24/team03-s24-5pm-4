@@ -10,4 +10,5 @@ export default function UCSBDiningCommonsMenuItemsEditPage() {
       </div>
     </BasicLayout>
   )
+  
 }

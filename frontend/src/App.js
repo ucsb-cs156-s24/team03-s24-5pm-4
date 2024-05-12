@@ -21,14 +21,23 @@ import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganiza
 import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
 
 
-import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
+
+import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
+import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
+import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
+
+import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationCreatePage from "main/pages/UCSBOrganization/UCSBOrganizationCreatePage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
+
+
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
+import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 
 import UCSBDiningCommonsMenuItemsIndexPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsIndexPage";
 import UCSBDiningCommonsMenuItemsCreatePage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsCreatePage";
 import UCSBDiningCommonsMenuItemsEditPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsEditPage";
-
 
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
@@ -37,6 +46,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import RecommendationRequestIndexPage from "./main/pages/RecommendationRequest/RecommendationRequestIndexPage";
 import RecommendationRequestEditPage from "./main/pages/RecommendationRequest/RecommendationRequestEditPage";
 import RecommendationRequestCreatePage from "./main/pages/RecommendationRequest/RecommendationRequestCreatePage";
+
+import UCSBDiningCommonsMenuItemsIndexPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsIndexPage";
+import UCSBDiningCommonsMenuItemsCreatePage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsCreatePage";
+import UCSBDiningCommonsMenuItemsEditPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsEditPage";
 
 function App() {
   const { data: currentUser } = useCurrentUser();
@@ -79,7 +92,7 @@ function App() {
             </>
           )
         }
-        {
+         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
               <Route exact path="/ucsborganizations" element={<UCSBOrganizationIndexPage />} />
@@ -156,7 +169,6 @@ function App() {
         }
       </Routes>
     </BrowserRouter>
-
   );
 }
 
