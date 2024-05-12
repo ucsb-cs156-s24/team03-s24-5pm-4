@@ -50,7 +50,7 @@ describe("MenuItemReviewCreatePage tests", () => {
         );
     });
 
-    test("on submit, makes request to backend, and redirects to /menuitemreviews", async () => {
+    test("on submit, makes request to backend, and redirects to /menuitemreview", async () => {
 
         const queryClient = new QueryClient();
         const menuItemReview = {
@@ -62,7 +62,7 @@ describe("MenuItemReviewCreatePage tests", () => {
             comments: "test"
         };
 
-        axiosMock.onPost("/api/menuitemreviews/post").reply( 202, menuItemReview );
+        axiosMock.onPost("/api/menuitemreview/post").reply( 202, menuItemReview );
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -106,6 +106,6 @@ describe("MenuItemReviewCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New menuItemReview Created - id: 1 itemId: 1");
-        expect(mockNavigate).toBeCalledWith({ "to": "/menuitemreviews" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/menuitemreview" });
     });
 });
