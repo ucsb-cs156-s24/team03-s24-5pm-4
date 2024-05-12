@@ -1,9 +1,9 @@
 const helpRequestFixtures = {
     oneHelpRequest: {
         "id": 1,
-        "requesterEmail": "example@ucsb.edu",
+        "requesterEmail": "jason_rodrigues@ucsb.edu",
         "teamId": "5pm-4",
-        "tableOrBreakoutRoom": "12",
+        "tableOrBreakoutRoom": "Table 12",
         "requestTime": "2022-01-02T12:00:00",
         "explanation": "Issues",
         "solved": true
