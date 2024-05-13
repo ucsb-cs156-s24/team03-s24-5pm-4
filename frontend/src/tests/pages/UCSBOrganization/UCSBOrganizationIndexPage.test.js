@@ -46,7 +46,7 @@ describe("UCSBOrganizationIndexPage tests", () => {
         // arrange
         setupAdminUser();
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/ucsborganziations/all").reply(200, []);
+        axiosMock.onGet("/api/ucsborganizations/all").reply(200, []);
 
         // act
         render(

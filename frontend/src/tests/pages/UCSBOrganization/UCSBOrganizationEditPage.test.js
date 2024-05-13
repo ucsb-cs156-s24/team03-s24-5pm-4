@@ -29,7 +29,7 @@ jest.mock('react-router-dom', () => {
         __esModule: true,
         ...originalModule,
         useParams: () => ({
-            orgCode: "ZP"
+            id: "ZP"
         }),
         Navigate: (x) => { mockNavigate(x); return null; }
     };
@@ -46,7 +46,7 @@ describe("UCSBOrganizationEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/ucsborganizations", { params: { orgCode: "ZP" } }).timeout();
+            axiosMock.onGet("/api/ucsborganizations", { params: { id: "ZP" } }).timeout();
         });
 
         const queryClient = new QueryClient();
