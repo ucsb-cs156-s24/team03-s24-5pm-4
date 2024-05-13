@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,11 +139,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,9 +150,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,28 +166,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,10 +207,10 @@ import {useBackend, useBackendMutation} from "../../utils/useBackend";
 import {toast} from "react-toastify";
 import RecommendationRequestForm from "../../components/RecommendationRequest/RecommendationRequestForm";
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >RecommendationRequestEditPage(</span>{storybook=<span class="branch-0 cbranch-no" title="branch not covered" >false}</span>) {
-  let { id } = <span class="cstat-no" title="statement not covered" >useParams();</span>
+export default function RecommendationRequestEditPage({storybook=false}) {
+  let { id } = useParams();
   const { data: request, _error, _status } =
-<span class="cstat-no" title="statement not covered" >       useBackend(</span>
+       useBackend(
            // Stryker disable next-line all : don't test internal caching of React Query
            [`/api/restaurants?id=${id}`],
            {  // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
@@ -221,7 +221,7 @@ export default function <span class="fstat-no" title="function not covered" >Rec
                }
            }
        );
-    const objectToAxiosPutParams = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(r</span>equest) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+    const objectToAxiosPutParams = (request) =&gt; ({
         url: "/api/recommendationrequest",
         method: "PUT",
         params: {
@@ -237,28 +237,28 @@ export default function <span class="fstat-no" title="function not covered" >Rec
         }
     });
 &nbsp;
-    const onSuccess = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(r</span>equest) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        toast(`Recommendation request update - id: ${request.id} requester email: ${request.requesterEmail} professor email: ${request.professorEmail} explanation: ${request.explanation} date requested: ${request.dateRequested} date needed: ${request.dateNeeded} done: ${request.done}`);</span>
+    const onSuccess = (request) =&gt; {
+        toast(`Recommendation request update - id: ${request.id} requester email: ${request.requesterEmail} professor email: ${request.professorEmail} explanation: ${request.explanation} date requested: ${request.dateRequested} date needed: ${request.dateNeeded} done: ${request.done}`);
     }
 &nbsp;
-    const mutation = <span class="cstat-no" title="statement not covered" >useBackendMutation(</span>
+    const mutation = useBackendMutation(
         objectToAxiosPutParams,
         { onSuccess },
         // Stryker disable next-line all : hard to set up test for caching
         [`/api/recommendationrequest?id=${id}`]
     );
 &nbsp;
-    const { isSuccess } = <span class="cstat-no" title="statement not covered" >mutation</span>
+    const { isSuccess } = mutation
 &nbsp;
-    const onSubmit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        mutation.mutate(data);</span>
+    const onSubmit = async (data) =&gt; {
+        mutation.mutate(data);
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (isSuccess &amp;&amp; !storybook) {</span>
-<span class="cstat-no" title="statement not covered" >        return &lt;Navigate to="/recommendationrequest" /&gt;</span>
+    if (isSuccess &amp;&amp; !storybook) {
+        return &lt;Navigate to="/recommendationrequest" /&gt;
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return (</span>
+    return (
         &lt;BasicLayout&gt;
             &lt;div className="pt-2"&gt;
                 &lt;h1&gt;Edit Recommendation Request&lt;/h1&gt;
@@ -277,7 +277,7 @@ export default function <span class="fstat-no" title="function not covered" >Rec
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun May 12 2024 12:36:04 GMT-0700 (Pacific Daylight Time)
+                at Sun May 12 2024 17:55:29 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

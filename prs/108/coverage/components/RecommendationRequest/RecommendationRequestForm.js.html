@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Articles/ArticlesForm.js</title>
+    <title>Code coverage report for components/RecommendationRequest/RecommendationRequestForm.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Articles</a> ArticlesForm.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/RecommendationRequest</a> RecommendationRequestForm.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -218,17 +218,7 @@
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a>
-<a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -238,31 +228,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -392,46 +373,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form, Row, Col } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 &nbsp;
-function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" }) {
-&nbsp;
-    // Sstryker disable all
-    const {
+function RecommendationRequestForm({initialContents, submitAction, buttonLabel = "Create"}){
+    // Stryker disable all
+    const{
         register,
-        formState: { errors },
-        handleSubmit,
+        formState: {errors},
+        handleSubmit
     } = useForm(
-        { defaultValues: initialContents || {}, }
+        {defaultValues: initialContents || {},}
     );
     // Stryker restore all
 &nbsp;
+&nbsp;
     const navigate = useNavigate();
-&nbsp;
-    // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
-    // Note that even this complex regex may still need some tweaks
-&nbsp;
     // Stryker disable next-line Regex
-    const isodate_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+    const date_regex = /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+    // Stryker disable next-line all
+    const email_regex = /(\w)+@(\w)+\.(\w)+/i;
 &nbsp;
     // Stryker disable next-line all
+    const truefalse_regex = /(true)|(false)/i;
 &nbsp;
     return (
-&nbsp;
         &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
-&nbsp;
-&nbsp;
             &lt;Row&gt;
-&nbsp;
                 {initialContents &amp;&amp; (
                     &lt;Col&gt;
-                        &lt;Form.Group className="mb-3" &gt;
+                        &lt;Form.Group className="mb-3"&gt;
                             &lt;Form.Label htmlFor="id"&gt;Id&lt;/Form.Label&gt;
                             &lt;Form.Control
-                                data-testid="ArticlesForm-id"
+                                data-testid="RecommendationRequestForm-id"
                                 id="id"
                                 type="text"
                                 {...register("id")}
@@ -444,121 +419,116 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
 &nbsp;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="title"&gt;Title&lt;/Form.Label&gt;
+                        &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="ArticlesForm-title"
-                            id="title"
+                            data-testid="RecommendationRequestForm-requesterEmail"
+                            id="requesterEmail"
                             type="text"
-                            isInvalid={Boolean(errors.title)}
-                            {...register("title", {
-                                required: "title is required."
-                            })}
-                        /&gt;
+                            isInvalid={Boolean(errors.requesterEmail)}
+                            {...register("requesterEmail", {required: true, pattern: email_regex})}
+                            /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.title?.message}
+                            {errors.requesterEmail &amp;&amp; 'Requester Email is required. '}
+                            {errors.requesterEmail?.type === 'pattern' &amp;&amp; 'Requester Email must be email-format.'}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="dateAdded"&gt; Date(iso format)&lt;/Form.Label&gt;
+                        &lt;Form.Label htmlFor="professorEmail"&gt;Professor Email&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="ArticlesForm-dateAdded"
-                            id="dateAdded"
-                            type="datetime-local"
-                            isInvalid={Boolean(errors.dateAdded)}
-                            {...register("dateAdded", { required: true, pattern: isodate_regex })}
+                            data-testid="RecommendationRequestForm-professorEmail"
+                            id="professorEmail"
+                            type="text"
+                            isInvalid={Boolean(errors.professorEmail)}
+                            {...register("professorEmail", {required: true, pattern: email_regex})}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.dateAdded &amp;&amp; 'dateAdded is required.'}
+                            {errors.professorEmail &amp;&amp; 'Professor Email is required. '}
+                            {errors.professorEmail?.type === 'pattern' &amp;&amp; 'Professor Email must be email-format.'}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
-            &lt;/Row&gt;
-&nbsp;
-            &lt;Row&gt;
-&nbsp;
                 &lt;Col&gt;
-&nbsp;
-&nbsp;
-&nbsp;
                     &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="email"&gt;Email&lt;/Form.Label&gt;
-                        &lt;Form.Control
-                            data-testid="ArticlesForm-email"
-                            id="email"
-                            type="text"
-                            isInvalid={Boolean(errors.email)}
-                            {...register("email", {
-                                required: "email is required."
-                            })}
-                        /&gt;
-                        &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.email?.message}
-                        &lt;/Form.Control.Feedback&gt;
-                    &lt;/Form.Group&gt;
-                &lt;/Col&gt;
-                &lt;Col&gt;
-                &lt;Form.Group className="mb-3" &gt;
-                        &lt;Form.Label htmlFor="url"&gt;Url&lt;/Form.Label&gt;
-                        &lt;Form.Control
-                            data-testid="ArticlesForm-url"
-                            id="url"
-                            type="text"
-                            isInvalid={Boolean(errors.url)}
-                            {...register("url", {
-                                required: "url is required."
-                            })}
-                        /&gt;
-                        &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.url?.message}
-                        &lt;/Form.Control.Feedback&gt;
-                    &lt;/Form.Group&gt;
-                    &lt;/Col&gt;
-            &lt;/Row&gt;
-            &lt;Row&gt;
-                &lt;Col&gt;
-                &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="ArticlesForm-explanation"
-                          id="explanation"
-                           type="text"
+                            data-testid="RecommendationRequestForm-explanation"
+                            id="explanation"
+                            type="text"
                             isInvalid={Boolean(errors.explanation)}
-                         {...register("explanation", {
-                                required: "explanation is required."
-                            })}
+                            {...register("explanation", {required:true})}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.explanation?.message}
+                            {errors.explanation &amp;&amp; 'Explanation is required. '}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3" &gt;
+                        &lt;Form.Label htmlFor="dateRequested"&gt;Date Requested&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="RecommendationRequestForm-dateRequested"
+                            id="dateRequested"
+                            type="datetime-local"
+                            isInvalid={Boolean(errors.dateRequested)}
+                            {...register("dateRequested", {required: true, pattern: date_regex})}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.dateRequested &amp;&amp; 'Date Requested is required. '}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3" &gt;
+                        &lt;Form.Label htmlFor="dateNeeded"&gt;Date Needed&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="RecommendationRequestForm-dateNeeded"
+                            id="dateNeeded"
+                            type="datetime-local"
+                            isInvalid={Boolean(errors.dateNeeded)}
+                            {...register("dateNeeded", {required: true, pattern: date_regex})}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.dateNeeded &amp;&amp; 'Date Needed is required. '}
+                        &lt;/Form.Control.Feedback&gt;
+                    &lt;/Form.Group&gt;
+                &lt;/Col&gt;
+                &lt;Col&gt;
+                    &lt;Form.Group className="mb-3" &gt;
+                        &lt;Form.Label htmlFor="done"&gt;Done&lt;/Form.Label&gt;
+                        &lt;Form.Control
+                            data-testid="RecommendationRequestForm-done"
+                            id="done"
+                            type="text"
+                            isInvalid={Boolean(errors.done)}
+                            {...register("done", {required: true, pattern: truefalse_regex})}
+                        /&gt;
+                        &lt;Form.Control.Feedback type="invalid"&gt;
+                            {errors.done &amp;&amp; 'Done is required. '}
+                            {errors.done?.type === 'pattern' &amp;&amp; 'Done must be true or false.'}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
             &lt;/Row&gt;
             &lt;Row&gt;
                 &lt;Col&gt;
-                    &lt;Button
-                        type="submit"
-                        data-testid="ArticlesForm-submit"
-                    &gt;
-                        {buttonLabel}
-                    &lt;/Button&gt;
+                    &lt;Button type="submit" data-testid="RecommendationRequestForm-submit"&gt;{buttonLabel}&lt;/Button&gt;
                     &lt;Button
                         variant="Secondary"
                         onClick={() =&gt; navigate(-1)}
-                        data-testid="ArticlesForm-cancel"
-                    &gt;
+                        data-testid="RecommendationRequestForm-cancel"&gt;
                         Cancel
                     &lt;/Button&gt;
                 &lt;/Col&gt;
             &lt;/Row&gt;
         &lt;/Form&gt;
 &nbsp;
-    )
+    );
+&nbsp;
 }
 &nbsp;
-export default ArticlesForm;
-&nbsp;</pre></td></tr></table></pre>
+export default RecommendationRequestForm;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
