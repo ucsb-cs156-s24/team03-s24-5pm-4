@@ -59,7 +59,6 @@ export default function ArticlesEditPage({storybook=false}) {
     return <Navigate to="/articles" />
   }
 
-
   return (
     <BasicLayout>
       <div className="pt-2">
