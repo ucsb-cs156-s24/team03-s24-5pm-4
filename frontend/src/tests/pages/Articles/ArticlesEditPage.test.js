@@ -1,14 +1,13 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
-import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import mockConsole from "jest-mock-console";
-import { articlesFixtures } from "fixtures/articlesFixtures";
+import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import mockConsole from "jest-mock-console";
 
 const mockToast = jest.fn();
 jest.mock('react-toastify', () => {
@@ -20,133 +19,130 @@ jest.mock('react-toastify', () => {
     };
 });
 
-describe("ArticlesIndexPage tests", () => {
-
-    const axiosMock = new AxiosMockAdapter(axios);
-
-    const testId = "ArticlesTable";
-
-    const setupUserOnly = () => {
-        axiosMock.reset();
-        axiosMock.resetHistory();
-        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        useParams: () => ({
+            id: 17
+        }),
+        Navigate: (x) => { mockNavigate(x); return null; }
     };
+});
 
-    const setupAdminUser = () => {
-        axiosMock.reset();
-        axiosMock.resetHistory();
-        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
-        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-    };
-//
+describe("ArticlesEditPage tests", () => {
 
-    const queryClient = new QueryClient();
+    describe("when the backend doesn't return data", () => {
 
-    test("Renders with Create Button for admin user", async () => {
-        setupAdminUser();
-        axiosMock.onGet("/api/articles/all").reply(200, []);
+        const axiosMock = new AxiosMockAdapter(axios);
 
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <ArticlesIndexPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await waitFor(() => {
-            expect(screen.getByText(/Create/)).toBeInTheDocument();
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/articles", { params: { id: 17 } }).timeout();
         });
-        const button = screen.getByText(/Create/);
-        expect(button).toHaveAttribute("href", "/articles/create");
-        expect(button).toHaveAttribute("style", "float: right;");
+
+        const queryClient = new QueryClient();
+        test("renders header but table is not present", async () => {
+
+            const restoreConsole = mockConsole();
+
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <ArticlesEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+            await screen.findByText("Edit Articles");
+            expect(screen.queryByTestId("ArticleForm-url")).not.toBeInTheDocument();
+            restoreConsole();
+        });
     });
 
-    test("renders three articles correctly for regular user", async () => {
-        setupUserOnly();
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
+    describe("tests where backend is working normally", () => {
 
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <ArticlesIndexPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+        const axiosMock = new AxiosMockAdapter(axios);
 
-        await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1"); });
-        expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
-        expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/articles", { params: { id: 17 } }).reply(200, {
+                "id": 17,
+                "title": "Jump man can't jump",
+                "explanation": "Drake fails to make a basketball dunk",
+                "dateAdded" : "2022-07-04T12:00:00",
+                "url" : "https://drakenews.com/",
+                "email" : "drakenews@gmail.com",
+            });
+            axiosMock.onPut('/api/articles').reply(200, {
+                "id": 17,
+                "title": "banana",
+                "explanation": "b",
+                "dateAdded" : "2022-07-05T12:00:00",
+                "url" : "a",
+                "email" : "c",
+            });
+        });
 
-        const createArticlesButton = screen.queryByText("Create Articles");
-        expect(createArticlesButton).not.toBeInTheDocument();
+        const queryClient = new QueryClient();
 
-        const name = screen.getByText("I cannot watch");
-        expect(name).toBeInTheDocument();
+        test("Is populated with the data provided", async () => {
 
-        const description = screen.getByText("https://movietrends.com/");
-        expect(description).toBeInTheDocument();
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <ArticlesEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
 
-        // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
-        expect(screen.queryByTestId("ArticlesTable-cell-row-0-col-Delete-button")).not.toBeInTheDocument();
-        expect(screen.queryByTestId("ArticlesTable-cell-row-0-col-Edit-button")).not.toBeInTheDocument();
+            await screen.findByTestId("ArticlesForm-id");
+
+            const id = screen.getByTestId("ArticlesForm-id")
+            expect(id).toHaveValue("17")
+            const title = screen.getByTestId("ArticlesForm-title")
+            expect(title).toHaveValue("Jump man can't jump")
+            const dateAdded = screen.getByTestId("ArticlesForm-dateAdded")
+            expect(dateAdded).toHaveValue("2022-07-04T12:00")
+            const email = screen.getByTestId("ArticlesForm-email")
+            expect(email).toHaveValue("drakenews@gmail.com")
+            const url =  screen.getByTestId("ArticlesForm-url")
+            expect(url).toHaveValue("https://drakenews.com/")
+            const explanation = screen.getByTestId("ArticlesForm-explanation")
+            expect(explanation).toHaveValue("Drake fails to make a basketball dunk")
+            const submit = screen.getByTestId("ArticlesForm-submit")
+
+            fireEvent.change(title, { target: { value: 'banana' } });
+            fireEvent.change(dateAdded, { target: { value: '2022-07-05T12:00:00' } });
+            fireEvent.change(email, { target: { value: 'c' } });
+            fireEvent.change(url, { target: { value: 'a' } });
+            fireEvent.change(explanation, { target: { value: 'b' } });
+            fireEvent.click(submit);
+
+            await waitFor(() => expect(mockToast).toBeCalled());
+            expect(mockToast).toBeCalledWith("Articlearticles Updated - id: 17 title: banana");
+
+            expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
+
+            expect(axiosMock.history.put.length).toBe(1); // times called
+            expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
+            expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
+                "title": "banana",
+                "dateAdded" : "2022-07-05T12:00",
+                "url" : "a",
+                "explanation": "b",
+                "email" : "c",
+            })); // posted object
+
+
+        });
+
     });
-
-    test("renders empty table when backend unavailable, user only", async () => {
-        setupUserOnly();
-
-        axiosMock.onGet("/api/articles/all").timeout();
-
-        const restoreConsole = mockConsole();
-        
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <ArticlesIndexPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
-        
-        const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/articles/all");
-        restoreConsole();
-
-    });
-
-    test("what happens when you click delete, admin", async () => {
-        setupAdminUser();
-
-        axiosMock.onGet("/api/articles/all").reply(200, articlesFixtures.threeArticles);
-        axiosMock.onDelete("/api/articles").reply(200, "Articles with id 1 was deleted");
-
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <ArticlesIndexPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
-
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-
-
-        const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-        expect(deleteButton).toBeInTheDocument();
-
-        fireEvent.click(deleteButton);
-
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Articles with id 1 was deleted") });
-
-        await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
-        expect(axiosMock.history.delete[0].url).toBe("/api/articles");
-        expect(axiosMock.history.delete[0].url).toBe("/api/articles");
-        expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
-    });
-
 });
