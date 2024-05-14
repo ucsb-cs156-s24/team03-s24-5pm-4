@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'
 import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 
+
 export default function ArticlesEditPage({storybook=false}) {
   let { id } = useParams();
 
@@ -57,6 +58,7 @@ export default function ArticlesEditPage({storybook=false}) {
   if (isSuccess && !storybook) {
     return <Navigate to="/articles" />
   }
+
 
   return (
     <BasicLayout>
