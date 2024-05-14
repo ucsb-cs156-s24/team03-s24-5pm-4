@@ -11,6 +11,9 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
+import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
+import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
 import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
 import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
@@ -68,15 +71,15 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
-              <Route exact path="/restaurants" element={<RestaurantIndexPage />} />
+              <Route exact path="/articles" element={<ArticlesIndexPage />} />
             </>
           )
         }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
-              <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
-              <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
+              <Route exact path="/articles/edit/:id" element={<ArticlesEditPage />} />
+              <Route exact path="/articles/create" element={<ArticlesCreatePage />} />
             </>
           )
         }
@@ -140,9 +143,10 @@ function App() {
             </>
           )
         }
-        {
+         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
+              <Route exact path="/restaurants" element={<RestaurantIndexPage />} />
               <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
               <Route exact path="/ucsbdiningcommonsmenuitems" element={<UCSBDiningCommonsMenuItemsIndexPage />} />
               <Route exact path="/helprequest" element={<HelpRequestIndexPage />} />
@@ -152,6 +156,8 @@ function App() {
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
+              <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
+              <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
               <Route exact path="/helprequest/edit/:id" element={<HelpRequestEditPage />} />
               <Route exact path="/helprequest/create" element={<HelpRequestCreatePage />} />
               <Route exact path="/ucsbdiningcommonsmenuitems/edit/:id" element={<UCSBDiningCommonsMenuItemsEditPage />} />
