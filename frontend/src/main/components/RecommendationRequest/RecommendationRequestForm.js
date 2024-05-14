@@ -20,11 +20,8 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
     // Stryker disable next-line all
     const email_regex = /(\w)+@(\w)+\.(\w)+/i;
 
-    // Stryker disable next-line all
-    const truefalse_regex = /(true)|(false)/i;
-
     return (
-        <Form onSubmit={handleSubmit(submitAction)}>
+        <Form onSubmit={handleSubmit(submitAction)} noValidate>
             <Row>
                 {initialContents && (
                     <Col>
@@ -121,17 +118,22 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
+                        {/*Thank you to stackoverflow for teaching me how to comment,
+                        https://stackoverflow.com/questions/30766441/how-to-use-comments-in-react
+                        and thank you to stack overflow for teaching me the as="select" modifier to get this to work
+                        (I was stuck here an hour
+                        https://stackoverflow.com/questions/68166687/why-isnt-form-select-recognized-in-my-simple-react-bootstrap-app-following-the*/}
                         <Form.Label htmlFor="done">Done</Form.Label>
-                        <Form.Control
-                            data-testid="RecommendationRequestForm-done"
-                            id="done"
-                            type="text"
-                            isInvalid={Boolean(errors.done)}
-                            {...register("done", {required: true, pattern: truefalse_regex})}
-                        />
+                        <Form.Control data-testid="RecommendationRequestForm-done" id="done" as="select"
+                                isInvalid={Boolean(errors.done)}
+                                {...register("done", {required: true, minLength: 1 })}
+                        defaultValue="">
+                            <option value="">Pick a value</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </Form.Control>
                         <Form.Control.Feedback type="invalid">
                             {errors.done && 'Done is required. '}
-                            {errors.done?.type === 'pattern' && 'Done must be true or false.'}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
