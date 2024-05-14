@@ -61,7 +61,7 @@ describe("ArticlesCreatePage tests", () => {
             explanation: "Bad bad bad",
             email: "123milkz@gmail.com",
             url: "123milkz.com",
-            dateAdded: "2022-01-03T00:00:00"
+            dateAdded: "2010-06-15T00:00"
 
         };
 
@@ -97,15 +97,23 @@ describe("ArticlesCreatePage tests", () => {
         fireEvent.change(explanationinput, { target: { value: 'Bad bad bad' } })
         fireEvent.change(emailInput, {target: {value: '123milkz@gmail.com'}})
         fireEvent.change(urlInput, {target: {value: '123milkz.com'}})
-        fireEvent.change(date, {target: {value: '2024-05-14T04:17:14Z'}})
+        fireEvent.change(date, {target: {value: "2010-06-15T00:00"}})
         
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
         fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+        expect(axiosMock.history.post[0].params).toEqual({
+            title: "nah",
+            explanation: "Bad bad bad",
+            email: "123milkz@gmail.com",
+            url: "123milkz.com",
+            dateAdded: "2010-06-15T00:00"
+        });
 
-
+        expect(mockToast).toBeCalledWith("New Article Created - id: 3 title: nah");
+        expect(mockNavigate).toBeCalledWith({ "to": "/articles" });
 
     });
 
