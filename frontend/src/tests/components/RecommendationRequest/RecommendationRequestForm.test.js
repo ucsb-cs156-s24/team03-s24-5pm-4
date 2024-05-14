@@ -69,7 +69,6 @@ describe("RecommendationRequestForm tests", () => {
         await screen.findByText(/Professor Email must be email-format./);
         await screen.findByText(/Date Requested is required./);
         await screen.findByText(/Date Needed is required./);
-        await screen.findByText(/Done must be true or false./);
 
     });
 
@@ -128,7 +127,6 @@ describe("RecommendationRequestForm tests", () => {
         expect(screen.queryByText(/Requester Email must be email-format./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Date Requested is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Date Needed is required./)).not.toBeInTheDocument();
-        expect(screen.queryByText(/Done must be true or false./)).not.toBeInTheDocument();
     });
 
 

@@ -1,4 +1,6 @@
+
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
+
 import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
@@ -37,7 +39,10 @@ describe("ArticlesCreatePage tests", () => {
         axiosMock.resetHistory();
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+
     });
+
+
 
     test("renders without crashing", () => {
         const queryClient = new QueryClient();
