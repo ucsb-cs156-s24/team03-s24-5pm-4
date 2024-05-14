@@ -49,9 +49,11 @@ describe("ArticlesCreatePage tests", () => {
             </QueryClientProvider>
         );
     });
-
+    
     test("on submit, makes request to backend, and redirects to /articles", async () => {
+        
 
+        
         const queryClient = new QueryClient();
         const articles = {
             id: 3,
@@ -59,12 +61,11 @@ describe("ArticlesCreatePage tests", () => {
             explanation: "Bad bad bad",
             email: "123milkz@gmail.com",
             url: "123milkz.com",
-            dateAdded: "2024-05-14T04:17:14Z"
+            dateAdded: "2022-01-03T00:00:00"
 
         };
 
         axiosMock.onPost('/api/articles/post').reply(202, articles);
-
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
@@ -73,6 +74,34 @@ describe("ArticlesCreatePage tests", () => {
             </QueryClientProvider>
         )
 
+        await waitFor(() => {
+            expect(screen.getByLabelText("Title")).toBeInTheDocument();
+        });
+        
+        const titleInput = screen.getByLabelText("Title");
+        expect(titleInput).toBeInTheDocument();
+        const explanationinput = screen.getByLabelText("Explanation");
+        expect(explanationinput).toBeInTheDocument();
+
+        const urlInput = screen.getByLabelText("Url")
+        expect(urlInput).toBeInTheDocument();
+
+        const emailInput = screen.getByLabelText("Email");
+        expect(emailInput).toBeInTheDocument();
+
+        const date = screen.getByLabelText("Date(iso format)")
+        expect(date).toBeInTheDocument();
+
+
+        fireEvent.change(titleInput, { target: { value: 'nah' } })
+        fireEvent.change(explanationinput, { target: { value: 'Bad bad bad' } })
+        fireEvent.change(emailInput, {target: {value: '123milkz@gmail.com'}})
+        fireEvent.change(urlInput, {target: {value: '123milkz.com'}})
+        fireEvent.change(date, {target: {value: '2024-05-14T04:17:14Z'}})
+        
+        const createButton = screen.getByText("Create");
+        expect(createButton).toBeInTheDocument();
+        fireEvent.click(createButton);
 
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 

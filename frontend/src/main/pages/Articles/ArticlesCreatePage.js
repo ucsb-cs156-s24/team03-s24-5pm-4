@@ -3,6 +3,7 @@ import ArticlesForm from "main/components/Articles/ArticlesForm";
 import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
+import { articlesFixtures } from "fixtures/articlesFixtures";
 
 export default function ArticlesCreatePage({storybook=false}) {
 
