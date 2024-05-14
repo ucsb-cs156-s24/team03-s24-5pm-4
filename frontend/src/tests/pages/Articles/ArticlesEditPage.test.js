@@ -39,7 +39,7 @@ describe("ArticlesIndexPage tests", () => {
         axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
         axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
     };
-
+//
 
     const queryClient = new QueryClient();
 
