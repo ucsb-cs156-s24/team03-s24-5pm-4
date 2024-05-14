@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
@@ -218,7 +218,9 @@
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -240,10 +242,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -395,11 +399,8 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
     // Stryker disable next-line all
     const email_regex = /(\w)+@(\w)+\.(\w)+/i;
 &nbsp;
-    // Stryker disable next-line all
-    const truefalse_regex = /(true)|(false)/i;
-&nbsp;
     return (
-        &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
+        &lt;Form onSubmit={handleSubmit(submitAction)} noValidate&gt;
             &lt;Row&gt;
                 {initialContents &amp;&amp; (
                     &lt;Col&gt;
@@ -496,17 +497,22 @@ function RecommendationRequestForm({initialContents, submitAction, buttonLabel =
                 &lt;/Col&gt;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
+                        {/*Thank you to stackoverflow for teaching me how to comment,
+                        https://stackoverflow.com/questions/30766441/how-to-use-comments-in-react
+                        and thank you to stack overflow for teaching me the as="select" modifier to get this to work
+                        (I was stuck here an hour
+                        https://stackoverflow.com/questions/68166687/why-isnt-form-select-recognized-in-my-simple-react-bootstrap-app-following-the*/}
                         &lt;Form.Label htmlFor="done"&gt;Done&lt;/Form.Label&gt;
-                        &lt;Form.Control
-                            data-testid="RecommendationRequestForm-done"
-                            id="done"
-                            type="text"
-                            isInvalid={Boolean(errors.done)}
-                            {...register("done", {required: true, pattern: truefalse_regex})}
-                        /&gt;
+                        &lt;Form.Control data-testid="RecommendationRequestForm-done" id="done" as="select"
+                                isInvalid={Boolean(errors.done)}
+                                {...register("done", {required: true, minLength: 1 })}
+                        defaultValue=""&gt;
+                            &lt;option value=""&gt;Pick a value&lt;/option&gt;
+                            &lt;option value="true"&gt;True&lt;/option&gt;
+                            &lt;option value="false"&gt;False&lt;/option&gt;
+                        &lt;/Form.Control&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
                             {errors.done &amp;&amp; 'Done is required. '}
-                            {errors.done?.type === 'pattern' &amp;&amp; 'Done must be true or false.'}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
@@ -535,7 +541,7 @@ export default RecommendationRequestForm;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 13 2024 21:28:30 GMT-0700 (Pacific Daylight Time)
+                at Mon May 13 2024 21:46:28 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
