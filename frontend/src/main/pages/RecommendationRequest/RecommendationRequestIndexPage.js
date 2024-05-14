@@ -31,6 +31,7 @@ export default function RecommendationRequestIndexPage() {
             )
         }
     }
+    console.log(requests)
   // Stryker disable all : placeholder for future implementation
   return (
     <BasicLayout>
