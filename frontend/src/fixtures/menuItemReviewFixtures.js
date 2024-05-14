@@ -1,12 +1,12 @@
-const ucsbDatesFixtures = {
-    oneDate: {
+const menuItemReviewFixtures = {
+    oneReview: {
         "id": 1,
         "itemId": 1,
         "stars": 1,
         "reviewerEmail": "test1@gmail.com",
         "localDateTime": "2022-01-02T12:00:00"
     },
-    threeDates: [
+    threeReviews: [
         {
             "id": 1,
             "itemId": 1,
@@ -32,4 +32,4 @@ const ucsbDatesFixtures = {
 };
 
 
-export { ucsbDatesFixtures };
+export { menuItemReviewFixtures };

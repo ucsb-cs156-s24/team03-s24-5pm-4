@@ -36,7 +36,7 @@ describe("UCSBOrganizationUtils", () => {
 
         test("It returns the correct params", () => {
             // arrange
-            const cell = { row: { values: { id: 17 } } };
+            const cell = { row: { values: { orgCode: "KCL" } } };
 
             // act
             const result = cellToAxiosParamsDelete(cell);
@@ -45,14 +45,9 @@ describe("UCSBOrganizationUtils", () => {
             expect(result).toEqual({
                 url: "/api/ucsborganizations",
                 method: "DELETE",
-                params: { id: 17 }
+                params: { orgCode: "KCL" }
             });
         });
 
     });
 });
-
-
-
-
-

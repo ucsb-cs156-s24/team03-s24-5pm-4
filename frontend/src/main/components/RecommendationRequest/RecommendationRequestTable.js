@@ -52,7 +52,7 @@ export default function RecommendationRequestTable({requests, currentUser}){
         },
         {
             Header: 'Done',
-            accessor: 'done'
+            accessor: request => request.done.toString()
         }
     ];
 

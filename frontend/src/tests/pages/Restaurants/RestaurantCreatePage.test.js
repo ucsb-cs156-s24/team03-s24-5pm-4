@@ -60,9 +60,8 @@ describe("RestaurantCreatePage tests", () => {
             name: "South Coast Deli",
             description: "Sandwiches and Salads"
         };
-
         axiosMock.onPost("/api/restaurants/post").reply(202, restaurant);
-
+        
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
